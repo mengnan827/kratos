@@ -4,9 +4,9 @@ import (
 	"net/url"
 	"os"
 	"time"
-	"zone/test_demo/kratos_c/log"
-	"zone/test_demo/kratos_c/registry"
-	"zone/test_demo/kratos_c/transport"
+	"kratos_c/log"
+	"kratos_c/registry"
+	"kratos_c/transport"
 
 	"golang.org/x/net/context"
 )
