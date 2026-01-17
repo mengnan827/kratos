@@ -51,9 +51,7 @@ func generateFile(gen *protogen.Plugin, file *protogen.File, omitempty bool, omi
 	g.P()
 	g.P("package ", file.GoPackageName)
 	g.P()
-	// todo
-
-	return nil
+	return g
 }
 
 // 构造文件实体
@@ -61,5 +59,14 @@ func generateFileContent(gen *protogen.Plugin, file *protogen.File, g *protogen.
 	if len(file.Services) == 0 {
 		return
 	}
-	// 开始真的实体类
+	g.P("// This is a compile-time assertion to ensure that this generated file")
+	g.P("// is compatible with the kratos package it is being compiled against.")
+	g.P("var _ = new(", contextPackage.Ident("Context"), ")")
+	g.P("var _ = ", bindingPackage.Ident("EncodeURL"))
+	g.P("const _ = ", transportHTTPPackage.Ident("SupportPackageIsVersion1"))
+	g.P()
+	for range file.Services {
+		// todo
+	}
+	return
 }
