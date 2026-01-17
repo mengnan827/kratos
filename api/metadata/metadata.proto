@@ -1,17 +1,21 @@
 syntax = "proto3";
 
-package kratos.api;
+package metadata;
+
 import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
-option go_package = "/kratos/v2/api/proto/kratos/api;metadata";
 
+option go_package = ".;metadata";
+
+// Metadata is api definition metadata service.
 service Metadata {
-  rpc ListServices(ListServicesRequest) returns (ListServicesReply) {
+  // ListServices list the full name of all services.
+  rpc ListServices (ListServicesRequest) returns (ListServicesReply) {
     option (google.api.http) = {
       get: "/services",
     };
   }
-
+  // GetServiceDesc get the full fileDescriptorSet of service.
   rpc GetServiceDesc (GetServiceDescRequest) returns (GetServiceDescReply) {
     option (google.api.http) = {
       get: "/services/{name}",
@@ -28,6 +32,7 @@ message ListServicesReply {
 message GetServiceDescRequest {
   string name = 1;
 }
+
 message GetServiceDescReply {
-  google.protobuf.FileDescriptorSet file_descriptor_set = 1;
+  google.protobuf.FileDescriptorSet file_desc_set = 1;
 }
